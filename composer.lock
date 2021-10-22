@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaeddc4c4b1f6532abe6c9d36e365c93",
+    "content-hash": "5317a6042a44e1535e4941fe291feb0f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -116,6 +116,87 @@
             "time": "2021-06-18T13:26:35+00:00"
         },
         {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-icons.git",
+                "reference": "548869bc820a25f803530c82028482aefe08115f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/548869bc820a25f803530c82028482aefe08115f",
+                "reference": "548869bc820a25f803530c82028482aefe08115f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0",
+                "illuminate/filesystem": "^8.0",
+                "illuminate/support": "^8.0",
+                "illuminate/view": "^8.0",
+                "php": "^7.4|^8.0",
+                "symfony/console": "^5.3",
+                "symfony/finder": "^5.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "bin": [
+                "bin/blade-icons-generate"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-icons"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/caneco",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-08-11T10:09:06+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.9.3",
             "source": {
@@ -174,6 +255,67 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "brunocfalcao/blade-feather-icons",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brunocfalcao/blade-feather-icons.git",
+                "reference": "9e0b5aeaf8ebab5981517683c94ac03b726a797d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brunocfalcao/blade-feather-icons/zipball/9e0b5aeaf8ebab5981517683c94ac03b726a797d",
+                "reference": "9e0b5aeaf8ebab5981517683c94ac03b726a797d",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.0",
+                "illuminate/support": "^7.14|^8.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Brunocfalcao\\BladeFeatherIcons\\BladeFeatherIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Brunocfalcao\\BladeFeatherIcons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Falcao",
+                    "email": "bruno.c.falcao@brunofalcao.me",
+                    "homepage": "https://www.laraning.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of Feather Icons in your Laravel Blade views.",
+            "homepage": "https://github.com/brunocfalcao/blade-feather-icons",
+            "keywords": [
+                "Feather Icons",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/brunocfalcao/blade-feather-icons/issues",
+                "source": "https://github.com/brunocfalcao/blade-feather-icons/tree/v2.0.1"
+            },
+            "time": "2021-04-11T23:28:33+00:00"
         },
         {
             "name": "dasprid/enum",

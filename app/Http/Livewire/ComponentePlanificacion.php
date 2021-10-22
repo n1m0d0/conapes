@@ -2,21 +2,24 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Planificacion;
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Planificacion;
 
 class ComponentePlanificacion extends Component
 {
+    use WithPagination;
 
     public $busqueda;
 
     public function render()
     {
-        $planificaciones = Planificacion::query();
+        $planQuery = Planificacion::query();
         if($this->busqueda != null){
-            $planificaciones = $planificaciones->where('nombre', $this->busqueda);
+            $planQuery = $planQuery->where('nombre', "LIKE", "%$this->busqueda%");
         }
-        $planificaciones = $planificaciones->where('estado', 1)->get();
+        $planQuery = $planQuery->where('estado', 1);
+        $planificaciones = $planQuery->paginate(4);
         return view('livewire.componente-planificacion', compact('planificaciones'));
     }
 

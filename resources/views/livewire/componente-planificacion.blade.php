@@ -1,8 +1,11 @@
-<div class="p-4 grid grid-cols-12">
-    <div class="col-span-12">
+<div class="p-4 grid grid-cols-1 md:grid-cols-12">
+    <div class="col-span-1 md:col-span-4">
         <button wire:click='nuevo' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Nuevo
         </button>
+    </div>
+    <div class="col-span-1 md:col-span-8 content-end">
+        <input wire:model="busqueda" type="text" name="busqueda" placeholder="Buscar..">
     </div>
     <div class="col-span-12">
         <div class="overflow-x-auto pt-4">
@@ -30,21 +33,19 @@
                         <!-- <td class="p-3">
                             <span class="bg-green-400 text-gray-50 rounded-md px-2">ACTIVE</span>
                         </td> -->
-                        <td class="p-3">
-                            <a href="#" class="text-gray-500 hover:text-gray-100 mr-2">
-                                <i class="material-icons-outlined text-base">visibility</i>
+                        <td class="p-3 grid grid-cols-1 md:grid-cols-4">
+                            <a href="#" class="col-span-1 md:col-span-2 m-2">
+                                <x-feathericon-edit class="text-green-400 hover:text-gray-100" />
                             </a>
-                            <a href="#" class="text-yellow-400 hover:text-gray-100 mx-2">
-                                <i class="material-icons-outlined text-base">edit</i>
-                            </a>
-                            <a href="#" class="text-red-400 hover:text-gray-100 ml-2">
-                                <i class="material-icons-round text-base">delete_outline</i>
+                            <a href="#" class="col-span-1 md:col-span-2 m-2">
+                                <x-feathericon-trash-2 class="text-red-400 hover:text-gray-100" />
                             </a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $planificaciones->links() }}
         </div>
     </div>
 </div>
