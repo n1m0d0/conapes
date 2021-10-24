@@ -12,4 +12,11 @@
             </div>
         </div>
     </div>
+    @section('scripts')
+        <script>
+            window.addEventListener('alert', event => {
+                toastr.success(event.detail.mensaje)
+            })
+        </script>
+    @endsection
 </x-app-layout>
