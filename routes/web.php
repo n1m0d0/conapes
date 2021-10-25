@@ -23,3 +23,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('planificacion', [Paginas::class, "planificacion"])->name('pagina.planificacion');
+Route::get('propuesta', [Paginas::class, "propuesta"])->name('pagina.propuesta');

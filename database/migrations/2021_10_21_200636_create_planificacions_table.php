@@ -22,7 +22,7 @@ class CreatePlanificacionsTable extends Migration
             $table->tinyText('descripcion');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->enum('estado', [Planificacion::ACTIVO, Planificacion::INACTIVO])->default(Planificacion::ACTIVO);
+            $table->enum('estado', [Planificacion::REGISTRADO, Planificacion::ACTIVO, Planificacion::INACTIVO])->default(Planificacion::REGISTRADO);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

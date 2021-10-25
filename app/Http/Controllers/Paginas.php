@@ -10,4 +10,9 @@ class Paginas extends Controller
     {
         return view('page.planificacion');
     }
+
+    public function propuesta()
+    {
+        return view('page.propuesta');
+    }
 }

@@ -18,4 +18,14 @@ class Propuesta extends Model
     public const REVISION = 1;
     public const APROBADO = 2;
     public const REPROBADO = 3;
+
+    public function planificacion()
+    {
+        return $this->belongsTo(Planificacion::class);
+    }
+
+    public function documento()
+    {
+        return $this->belongsTo(Documento::class);
+    }
 }
