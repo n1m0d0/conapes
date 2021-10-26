@@ -16,10 +16,13 @@ class CreateAsignacionsTable extends Migration
     {
         Schema::create('asignacions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('especialista_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('propuesta_id');
-            $table->enum('estado', [Asignacion::ACTIVO, Asignacion::INACTIVO]);
+            $table->enum('estado', [Asignacion::ACTIVO, Asignacion::INACTIVO])->default(Asignacion::ACTIVO);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('propuesta_id')->references('id')->on('propuestas');
         });
     }
 

@@ -16,7 +16,7 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombres');
+            $table->string('nombre');
             $table->enum('estado', [Documento::ACTIVO, Documento::INACTIVO])->default(Documento::ACTIVO);
             $table->timestamps();
         });

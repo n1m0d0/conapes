@@ -20,6 +20,11 @@
                             Propuesta
                         </a>
                     </li>
+                    <li class="mr-2">
+                        <a href="{{ route('pagina.especialista') }}" class="">
+                            Especialista
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

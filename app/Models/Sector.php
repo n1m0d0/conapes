@@ -11,4 +11,9 @@ class Sector extends Model
 
     public const ACTIVO = 1;
     public const INACTIVO = 2;
+
+    public function propuestas()
+    {
+        return $this->hasMany(Propuesta::class);
+    }
 }

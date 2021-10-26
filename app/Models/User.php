@@ -63,4 +63,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Planificacion::class);
     }
+
+    public function especialista()
+    {
+        return $this->hasOne(Especialista::class);
+    }
+
+    public function asignaciones()
+    {
+        return $this->hasMany(Asignacion::class);
+    }
 }

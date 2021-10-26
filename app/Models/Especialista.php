@@ -11,4 +11,14 @@ class Especialista extends Model
 
     public const ACTIVO = 1;
     public const INACTIVO = 2;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function asignaciones()
+    {
+        return $this->hasMany(Asignacion::class);
+    }
 }

@@ -108,11 +108,13 @@ class ComponentePlanificacion extends Component
 
     public function modalCrear() 
     {
+        $this->limpiar();
         $this->nuevoModal = true;
     }
 
     public function modalActualizar($id) 
     {
+        $this->limpiar();
         $this->planificacion_id = $id;
         $planificacion = Planificacion::find($id);
         $this->portafolio_id = $planificacion->portafolio_id;        

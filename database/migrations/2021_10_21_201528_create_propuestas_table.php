@@ -22,7 +22,7 @@ class CreatePropuestasTable extends Migration
             $table->unsignedBigInteger('sector_id');
             $table->string('archivo');
             $table->unsignedBigInteger('documento_id');
-            $table->enum('estado', [Propuesta::REVISION, Propuesta::APROBADO, Propuesta::REPROBADO])->default(Propuesta::REVISION);
+            $table->enum('estado', [Propuesta::REGISTRADO, Propuesta::REVISION, Propuesta::APROBADO, Propuesta::REPROBADO, Propuesta::INACTIVO])->default(Propuesta::REGISTRADO);
             $table->timestamps();
 
             $table->foreign('planificacion_id')->references('id')->on('planificacions');

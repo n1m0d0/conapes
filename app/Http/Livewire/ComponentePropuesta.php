@@ -24,7 +24,10 @@ class ComponentePropuesta extends Component
     public $sector_id;
     public $archivo;
     public $documento_id;
+    public $propuesta_id;
     public $registrarModal = false;
+    public $editarModal = false;
+    public $eliminarModal = false;
 
     public function mount()
     {
@@ -41,11 +44,11 @@ class ComponentePropuesta extends Component
         if ($this->busqueda != null) {
             $propuestaQuery = $propuestaQuery->whereHas('planificacion', function ($query) {
                 $query->where('user_id', $this->user_id)->where('estado', 2)->where('nombre', 'LIKE', "%$this->busqueda%");
-            })->where('estado', 1);
+            })->where('estado', '!=', 5);
         } else {
             $propuestaQuery = $propuestaQuery->whereHas('planificacion', function ($query) {
                 $query->where('user_id', $this->user_id)->where('estado', 2);
-            })->where('estado', 1);
+            })->where('estado', '!=', 5);
         }
         $propuestas = $propuestaQuery->orderBy('id', 'DESC')->paginate(4);
         return view('livewire.componente-propuesta', compact('propuestas', 'planificaciones', 'sectores', 'documentos'));
@@ -80,9 +83,69 @@ class ComponentePropuesta extends Component
         $this->mensaje();
     }
 
+    public function editar()
+    {
+        $this->validate([
+            'planificacion_id' => 'required',
+            'fecha_ingreso' => 'required|date',
+            'prioridad' => 'required',
+            'sector_id' => 'required',
+            'archivo' => 'required|mimes:jpg,bmp,png,pdf|max:5120',
+            'documento_id' => 'required'
+        ]);
+
+        $propuesta = Propuesta::find($this->propuesta_id);
+        $propuesta->planificacion_id = $this->planificacion_id;
+        $propuesta->fecha_ingreso = $this->fecha_ingreso;
+        $propuesta->prioridad = $this->prioridad;
+        $propuesta->sector_id = $this->sector_id;
+        $propuesta->archivo = $this->archivo->store('public');
+        $propuesta->documento_id = $this->documento_id;
+        $propuesta->save();
+
+        $this->editarModal = false;
+        $this->limpiar();
+        $this->mensaje();
+    }
+
+    public function eliminar()
+    {
+        $propuesta = Propuesta::find($this->propuesta_id);
+        $propuesta->estado = Propuesta::INACTIVO;
+        $propuesta->save();
+
+        $planificacion = Planificacion::find($propuesta->planificacion_id);
+        $planificacion->estado = Planificacion::REGISTRADO;
+        $planificacion->save();
+
+        $this->mensajeEliminacion();
+        $this->eliminarModal = false;
+    }
+
     public function modalRegistrar()
     {
+        $this->limpiar();
         $this->registrarModal = true;
+    }
+
+    public function modalEditar($id)
+    {
+        $this->limpiar();
+        $this->propuesta_id = $id;
+        $propuesta = Propuesta::find($this->propuesta_id);
+        $this->planificacion_id = $propuesta->planificacion_id;
+        $this->fecha_ingreso = $propuesta->fecha_ingreso;
+        $this->prioridad = $propuesta->prioridad;
+        $this->sector_id = $propuesta->sector_id;
+        //$this->archivo = $propuesta->archivo;
+        $this->documento_id = $propuesta->documento_id;
+        $this->editarModal = true;
+    }
+
+    public function modalEliminar($id)
+    {
+        $this->propuesta_id = $id;
+        $this->eliminarModal = true;
     }
 
     public function limpiar()

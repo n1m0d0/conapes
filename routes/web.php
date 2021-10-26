@@ -22,5 +22,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('planificacion', [Paginas::class, "planificacion"])->name('pagina.planificacion');
-Route::get('propuesta', [Paginas::class, "propuesta"])->name('pagina.propuesta');
+Route::get('planificacion', [Paginas::class, "planificacion"])->name('pagina.planificacion')->middleware(['auth:sanctum', 'verified']);
+Route::get('propuesta', [Paginas::class, "propuesta"])->name('pagina.propuesta')->middleware(['auth:sanctum', 'verified']);
+Route::get('especialista', [Paginas::class, "especialista"])->name('pagina.especialista')->middleware(['auth:sanctum', 'verified']);

@@ -16,12 +16,12 @@ class CreateEspecialistasTable extends Migration
     {
         Schema::create('especialistas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('sector_id');
-            $table->string('nombres');
-            $table->string('apellidos');
             $table->enum('estado', [Especialista::ACTIVO, Especialista::INACTIVO])->default(Especialista::ACTIVO);
             $table->timestamps();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('sector_id')->references('id')->on('sectors');
         });
     }

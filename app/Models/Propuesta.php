@@ -15,9 +15,11 @@ class Propuesta extends Model
     public const BAJA = 3;
 
     //estado
-    public const REVISION = 1;
-    public const APROBADO = 2;
-    public const REPROBADO = 3;
+    public const REGISTRADO = 1;
+    public const REVISION = 2;
+    public const APROBADO = 3;
+    public const REPROBADO = 4;
+    public const INACTIVO = 5;
 
     public function planificacion()
     {
@@ -27,5 +29,15 @@ class Propuesta extends Model
     public function documento()
     {
         return $this->belongsTo(Documento::class);
+    }
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
+
+    public function asignacion()
+    {
+        return $this->hasMany(Asignacion::class);
     }
 }

@@ -11,5 +11,19 @@ class Asignacion extends Model
 
     public const ACTIVO = 1;
     public const INACTIVO = 2;
-    
+
+    public function propuesta()
+    {
+        return $this->belongsTo(Propuesta::class);
+    }
+
+    public function especialista()
+    {
+        return $this->belongsTo(Especialista::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

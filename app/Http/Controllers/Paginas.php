@@ -15,4 +15,9 @@ class Paginas extends Controller
     {
         return view('page.propuesta');
     }
+
+    public function especialista()
+    {
+        return view('page.especialista');
+    }
 }
