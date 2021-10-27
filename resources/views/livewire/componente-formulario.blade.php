@@ -62,9 +62,11 @@
                         <td class="p-3 ">
                             <ul class="ml-4 list-disc">
                                 @foreach ($propuesta->generados as $generado)
-                                    <li>
+                                <li>
+                                    <a href="http://">
                                         {{ $generado->formulario->nombre }}
-                                    </li>
+                                    </a>
+                                </li>
                                 @endforeach
                             </ul>
                         </td>
@@ -91,7 +93,8 @@
         <x-slot name="content">
             <div class="felx col-span-6 sm:col-span-4 items-center">
                 <x-jet-label for="formulario_id" value="Formulario" />
-                <select wire:model="formulario_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <select wire:model="formulario_id"
+                    class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     <option value="">Seleccione un opcion</option>
                     @foreach ($formularios as $formulario)
                     <option value="{{ $formulario->id }}">{{ $formulario->nombre }}</option>

@@ -56,6 +56,11 @@ class ComponenteFormulario extends Component
         $generado->formulario_id = $this->formulario_id;
         $generado->cabecera = $this->cabecera;
         $generado->cuerpo = $this->cuerpo;
+
+
+        
+
+        
         $generado->save();
 
         $this->limpiar();

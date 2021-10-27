@@ -21,6 +21,7 @@ class CreateGeneradosTable extends Migration
             $table->unsignedBigInteger('formulario_id');
             $table->tinyText('cabecera');
             $table->tinyText('cuerpo');
+            $table->string('archivo');
             $table->enum('estado', [Generado::ACTIVO, Generado::INACTIVO]);
             $table->timestamps();
 
