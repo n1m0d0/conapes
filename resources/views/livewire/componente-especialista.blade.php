@@ -177,7 +177,7 @@
         <x-slot name="title">
             <div class="flex col-span-6 sm:col-span-4 items-center">
                 <x-feathericon-alert-circle class="text-green-500 mr-2" />
-                Agregar Planificacion
+                Agregar Asignacion
             </div>
         </x-slot>
 
@@ -185,7 +185,6 @@
             <div class="felx col-span-6 sm:col-span-4 items-center">
                 <x-feathericon-alert-triangle class="h-20 w-20 text-yellow-500 text-center" />
                 <p>
-                    Una vez eliminado no se podra recuperar el registro.
                     ¿Esta seguro de que quiere Agregar el registro a sus Asignaciones?
                 </p>
             </div>
@@ -206,7 +205,7 @@
         <x-slot name="title">
             <div class="flex col-span-6 sm:col-span-4 items-center">
                 <x-feathericon-alert-circle class="text-red-500 mr-2" />
-                Eliminar Planificacion
+                Eliminar Asignacion
             </div>
         </x-slot>
 

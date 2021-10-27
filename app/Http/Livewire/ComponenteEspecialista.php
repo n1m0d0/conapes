@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Asignacion;
 use Livewire\Component;
 use App\Models\Propuesta;
+use App\Models\Asignacion;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
 
 class ComponenteEspecialista extends Component
 {
+    use WithPagination;
+    
     public $user_id;
     public $sector_id;
     public $propuesta_id;

@@ -20,4 +20,9 @@ class Paginas extends Controller
     {
         return view('page.especialista');
     }
+
+    public function formulario()
+    {
+        return view('page.formulario');
+    }
 }

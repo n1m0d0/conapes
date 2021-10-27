@@ -40,4 +40,9 @@ class Propuesta extends Model
     {
         return $this->hasMany(Asignacion::class);
     }
+    
+    public function generados()
+    {
+        return $this->hasMany(Generado::class);
+    }
 }

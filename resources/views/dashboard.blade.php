@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <!-- <x-jet-welcome /> -->
                 <ul class="p-2 uppercase">
+                    @role('funcionario')
                     <li class="mr2">
                         <a href="{{ route('pagina.planificacion') }}" class="">
                             Planificacion
@@ -20,9 +21,17 @@
                             Propuesta
                         </a>
                     </li>
+                    @endrole
+                    @role('especialista')
                     <li class="mr-2">
                         <a href="{{ route('pagina.especialista') }}" class="">
                             Especialista
+                        </a>
+                    </li>
+                    @endrole
+                    <li class="mr-2">
+                        <a href="{{ route('pagina.formulario') }}" class="">
+                            Formulario
                         </a>
                     </li>
                 </ul>
