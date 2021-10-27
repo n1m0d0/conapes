@@ -60,13 +60,20 @@
                             @endif
                         </td>
                         <td class="p-3 ">
-                            <ul class="ml-4 list-disc">
+                            <ul class="">
                                 @foreach ($propuesta->generados as $generado)
-                                <li>
-                                    <a href="http://">
+                                @if ($generado->estado == 1)
+                                <li class="flex items-center pt-2">
+                                    <a wire:click='descargarFormulario({{ $generado->id }})'
+                                        class="cursor-pointer text-gray-600 hover:text-gray-100">
                                         {{ $generado->formulario->nombre }}
                                     </a>
+                                    &nbsp;
+                                    <a wire:click='modalEliminar({{ $generado->id }})' class="cursor-pointer">
+                                        <x-feathericon-trash-2 class="text-red-400 hover:text-gray-100" />
+                                    </a>
                                 </li>
+                                @endif
                                 @endforeach
                             </ul>
                         </td>
@@ -125,5 +132,32 @@
 
     </x-jet-dialog-modal>
 
+    <x-jet-dialog-modal wire:model="eliminarModal">
+        <x-slot name="title">
+            <div class="flex col-span-6 sm:col-span-4 items-center">
+                <x-feathericon-alert-circle class="text-red-500 mr-2" />
+                Eliminar Planificacion
+            </div>
+        </x-slot>
 
+        <x-slot name="content">
+            <div class="felx col-span-6 sm:col-span-4 items-center">
+                <x-feathericon-alert-triangle class="h-20 w-20 text-yellow-500 text-center" />
+                <p>
+                    Una vez eliminado no se podra recuperar el registro.
+                    ¿Esta seguro de que quiere Eliminar el registro?
+                </p>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-danger-button wire:click="$set('eliminarModal', false)" wire:loading.attr="disabled">
+                Cancelar
+            </x-jet-danger-button>
+            <x-jet-secondary-button class="ml-2" wire:click='eliminar' wire:loading.attr="disabled">
+                Aceptar
+            </x-jet-secondary-button>
+        </x-slot>
+
+    </x-jet-dialog-modal>
 </div>
