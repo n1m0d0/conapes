@@ -15,6 +15,22 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    @role('funcionario')
+                    <x-jet-nav-link href="{{ route('pagina.planificacion') }}" :active="request()->routeIs('pagina.planificacion')">
+                        Planificacion
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('pagina.propuesta') }}" :active="request()->routeIs('pagina.propuesta')">
+                        Propuesta
+                    </x-jet-nav-link>
+                    @endrole
+                    @role('especialista')
+                    <x-jet-nav-link href="{{ route('pagina.especialista') }}" :active="request()->routeIs('pagina.especialista')">
+                        Especialista
+                    </x-jet-nav-link>
+                    @endrole
+                    <x-jet-nav-link href="{{ route('pagina.formulario') }}" :active="request()->routeIs('pagina.formulario')">
+                        Formulario
+                    </x-jet-nav-link>
                 </div>
             </div>
 
