@@ -1394,6 +1394,9 @@ select {
 .grid-cols-1 {
 	grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-12 {
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+}
 .flex-col {
 	flex-direction: column;
 }
@@ -1638,6 +1641,9 @@ select {
 }
 .p-3 {
 	padding: 0.75rem;
+}
+.p-10 {
+	padding: 2.5rem;
 }
 .px-4 {
 	padding-left: 1rem;
@@ -2404,6 +2410,10 @@ button.toast-close-button{padding:0;cursor:pointer;background:0 0;border:0;-webk
 
 	.md\:col-span-4 {
 		grid-column: span 4 / span 4;
+	}
+
+	.md\:col-span-12 {
+		grid-column: span 12 / span 12;
 	}
 
 	.md\:mt-0 {

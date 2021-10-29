@@ -18,7 +18,6 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-base.min.js"></script>
 </head>
 
 <body class="font-sans antialiased">

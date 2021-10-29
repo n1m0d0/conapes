@@ -21,6 +21,11 @@
         "tailwindcss": "^2.2.2"
     },
     "dependencies": {
+        "@fullcalendar/core": "^5.10.0",
+        "@fullcalendar/daygrid": "^5.10.0",
+        "@fullcalendar/list": "^5.10.0",
+        "@fullcalendar/timegrid": "^5.10.0",
+        "chart.js": "^3.6.0",
         "jquery": "^3.6.0",
         "toastr": "^2.1.4"
     }

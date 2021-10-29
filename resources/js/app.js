@@ -13,3 +13,8 @@ window.toastr = toastr;
 import jquery from "jquery";
 
 window.jquery = jquery;
+
+window.Chart = require('chart.js');
+
+import './myjs/calendar';
+import './myjs/show_chart';
