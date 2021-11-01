@@ -21,7 +21,15 @@ class ComponenteEstadistica extends Component
         $propuestaQuery = $propuestaQuery->whereHas('planificaciones', function ($query) {
             $query->where('estado', 2);
         });
-        $this->cartera = $propuestaQuery->get();
+
+        $p = DB::table('planificacions')
+            ->join('portafolios', 'planificacions.portafolio_id', '=', 'portafolios.id')           
+            ->select('portafolios.nombre', DB::raw('count(*) AS total'))
+            ->where('planificacions.estado', 2)
+            ->groupBy('nombre')
+            ->get();
+
+        $this->cartera = $p;
     }
     public function render()
     {

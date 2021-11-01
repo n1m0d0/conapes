@@ -18469,34 +18469,15 @@ var myChart = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](ctx, {
 });
 console.log("cargando chart");
 var ctx2 = document.getElementById("cartera");
-var estadistica2 = JSON.parse(ctx.getAttribute("data"));
+var estadistica2 = JSON.parse(ctx2.getAttribute("data"));
 var estadisticaValues2 = [];
 var estadisticaLabels2 = [];
 estadistica2.forEach(function (element) {
   estadisticaValues2.push(element.total);
-
-  if (element.estado == 1) {
-    estadisticaLabels2.push("REGISTRADO");
-  }
-
-  if (element.estado == 2) {
-    estadisticaLabels2.push("REVISION");
-  }
-
-  if (element.estado == 3) {
-    estadisticaLabels2.push("APROBADO");
-  }
-
-  if (element.estado == 4) {
-    estadisticaLabels2.push("REPROBADO");
-  }
-
-  if (element.estado == 5) {
-    estadisticaLabels2.push("ELIMINADO");
-  }
+  estadisticaLabels2.push(element.nombre);
 });
 var myChart2 = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](ctx2, {
-  type: "bar",
+  type: "doughnut",
   data: {
     labels: estadisticaLabels2,
     datasets: [{
