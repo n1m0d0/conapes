@@ -18316,21 +18316,21 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
-/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
-/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(toastr__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _myjs_calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./myjs/calendar */ "./resources/js/myjs/calendar.js");
-/* harmony import */ var _myjs_show_chart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./myjs/show_chart */ "./resources/js/myjs/show_chart.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
+/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(toastr__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _myjs_show_chart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./myjs/show_chart */ "./resources/js/myjs/show_chart.js");
+/* harmony import */ var _myjs_calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./myjs/calendar */ "./resources/js/myjs/calendar.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
-window.toastr = (toastr__WEBPACK_IMPORTED_MODULE_1___default());
+window.jquery = (jquery__WEBPACK_IMPORTED_MODULE_1___default());
 
-window.jquery = (jquery__WEBPACK_IMPORTED_MODULE_2___default());
+window.toastr = (toastr__WEBPACK_IMPORTED_MODULE_2___default());
 window.Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
 
 
@@ -18386,20 +18386,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");
-  var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__.Calendar(calendarEl, {
-    locale: _fullcalendar_core_locales_es__WEBPACK_IMPORTED_MODULE_4__["default"],
-    plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_list__WEBPACK_IMPORTED_MODULE_3__["default"]],
-    initialView: 'dayGridMonth',
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,listWeek'
-    } // go ahead with other parameters
+  var datos = JSON.parse(calendarEl.getAttribute("data"));
+  console.log(datos);
 
-  });
-  calendar.render();
+  if (calendarEl != null) {
+    var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__.Calendar(calendarEl, {
+      locale: _fullcalendar_core_locales_es__WEBPACK_IMPORTED_MODULE_4__["default"],
+      plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_list__WEBPACK_IMPORTED_MODULE_3__["default"]],
+      initialView: "dayGridMonth",
+      headerToolbar: {
+        left: "prev,next today",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,listWeek"
+      },
+      events: datos
+    });
+    calendar.render();
+  }
 });
 
 /***/ }),
@@ -18416,91 +18421,98 @@ __webpack_require__.r(__webpack_exports__);
 
 console.log("cargando chart");
 var ctx = document.getElementById("estado");
-var estadistica = JSON.parse(ctx.getAttribute("data"));
-var estadisticaValues = [];
-var estadisticaLabels = [];
-estadistica.forEach(function (element) {
-  estadisticaValues.push(element.total);
 
-  if (element.estado == 1) {
-    estadisticaLabels.push("REGISTRADO");
-  }
+if (ctx != null) {
+  var estadistica = JSON.parse(ctx.getAttribute("data"));
+  var estadisticaValues = [];
+  var estadisticaLabels = [];
+  estadistica.forEach(function (element) {
+    estadisticaValues.push(element.total);
 
-  if (element.estado == 2) {
-    estadisticaLabels.push("REVISION");
-  }
+    if (element.estado == 1) {
+      estadisticaLabels.push("REGISTRADO");
+    }
 
-  if (element.estado == 3) {
-    estadisticaLabels.push("APROBADO");
-  }
+    if (element.estado == 2) {
+      estadisticaLabels.push("REVISION");
+    }
 
-  if (element.estado == 4) {
-    estadisticaLabels.push("REPROBADO");
-  }
+    if (element.estado == 3) {
+      estadisticaLabels.push("APROBADO");
+    }
 
-  if (element.estado == 5) {
-    estadisticaLabels.push("ELIMINADO");
-  }
-});
-var myChart = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](ctx, {
-  type: "doughnut",
-  data: {
-    labels: estadisticaLabels,
-    datasets: [{
-      label: "Estado",
-      data: estadisticaValues,
-      backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)"],
-      borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
-      hoverOffset: 4
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top"
-      },
-      title: {
-        display: true,
-        text: "Propuestas por Estado"
+    if (element.estado == 4) {
+      estadisticaLabels.push("REPROBADO");
+    }
+
+    if (element.estado == 5) {
+      estadisticaLabels.push("ELIMINADO");
+    }
+  });
+  var myChart = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](ctx, {
+    type: "doughnut",
+    data: {
+      labels: estadisticaLabels,
+      datasets: [{
+        label: "Estado",
+        data: estadisticaValues,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top"
+        },
+        title: {
+          display: true,
+          text: "Propuestas por Estado"
+        }
       }
     }
-  }
-});
+  });
+}
+
 console.log("cargando chart");
 var ctx2 = document.getElementById("cartera");
-var estadistica2 = JSON.parse(ctx2.getAttribute("data"));
-var estadisticaValues2 = [];
-var estadisticaLabels2 = [];
-estadistica2.forEach(function (element) {
-  estadisticaValues2.push(element.total);
-  estadisticaLabels2.push(element.nombre);
-});
-var myChart2 = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](ctx2, {
-  type: "doughnut",
-  data: {
-    labels: estadisticaLabels2,
-    datasets: [{
-      label: "Cartera",
-      data: estadisticaValues2,
-      backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)"],
-      borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
-      hoverOffset: 4
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top"
-      },
-      title: {
-        display: true,
-        text: "Propuestas por Cartera de Estado"
+
+if (ctx2 != null) {
+  var estadistica2 = JSON.parse(ctx2.getAttribute("data"));
+  var estadisticaValues2 = [];
+  var estadisticaLabels2 = [];
+  estadistica2.forEach(function (element) {
+    estadisticaValues2.push(element.total);
+    estadisticaLabels2.push(element.nombre);
+  });
+  var myChart2 = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](ctx2, {
+    type: "doughnut",
+    data: {
+      labels: estadisticaLabels2,
+      datasets: [{
+        label: "Cartera",
+        data: estadisticaValues2,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(255, 206, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(255, 159, 64, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top"
+        },
+        title: {
+          display: true,
+          text: "Propuestas por Cartera de Estado"
+        }
       }
     }
-  }
-});
+  });
+}
 
 /***/ }),
 

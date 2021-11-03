@@ -1184,6 +1184,9 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mr-8 {
+	margin-right: 2rem;
+}
 .block {
 	display: block;
 }

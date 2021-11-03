@@ -7,4 +7,7 @@
          <canvas id="cartera" width="400" height="400" data="{{ $cartera }}"></canvas>
       </div>
    </div>
+   @section('scripts')
+
+   @endsection
 </div>

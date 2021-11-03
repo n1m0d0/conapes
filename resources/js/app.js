@@ -6,15 +6,16 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import toastr from "toastr";
-
-window.toastr = toastr;
-
 import jquery from "jquery";
 
 window.jquery = jquery;
 
+import toastr from "toastr";
+
+window.toastr = toastr;
+
 window.Chart = require('chart.js');
 
-import './myjs/calendar';
 import './myjs/show_chart';
+
+import './myjs/calendar';

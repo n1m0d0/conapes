@@ -8,7 +8,7 @@
             Reiniciar
         </button>
     </div>
-    <div class="flex col-span-1 md:col-span-4 items-center justify-end">
+    <div class="flex col-span-1 md:col-span-4 items-center justify-end gap-2">
         <button wire:click='modalCrear' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Nuevo
         </button>
@@ -51,6 +51,7 @@
             </table>
             {{ $planificaciones->links() }}
         </div>
+        @livewire('componente-calendario')
     </div>
 
     <x-jet-dialog-modal wire:model="nuevoModal">
@@ -61,7 +62,8 @@
         <x-slot name="content">
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="portafolio_id" value="Portafolio" />
-                <select wire:model="portafolio_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <select wire:model="portafolio_id"
+                    class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     <option value="">Seleccione un opcion</option>
                     @foreach ($portafolios as $portafolio)
                     <option value="{{ $portafolio->id }}">{{ $portafolio->nombre }}</option>
@@ -99,7 +101,7 @@
                 Guardar
             </x-jet-secondary-button>
         </x-slot>
-        
+
     </x-jet-dialog-modal>
 
     <x-jet-dialog-modal wire:model="editarModal">
@@ -110,7 +112,8 @@
         <x-slot name="content">
             <div class="col-span-6 sm:col-span-4">
                 <x-jet-label for="portafolio_id" value="Portafolio" />
-                <select wire:model="portafolio_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                <select wire:model="portafolio_id"
+                    class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     <option value="">Seleccione un opcion</option>
                     @foreach ($portafolios as $portafolio)
                     <option value="{{ $portafolio->id }}">{{ $portafolio->nombre }}</option>
@@ -148,7 +151,7 @@
                 Guardar
             </x-jet-secondary-button>
         </x-slot>
-        
+
     </x-jet-dialog-modal>
 
     <x-jet-dialog-modal wire:model="eliminarModal">
@@ -177,6 +180,6 @@
                 Aceptar
             </x-jet-secondary-button>
         </x-slot>
-        
+
     </x-jet-dialog-modal>
 </div>
