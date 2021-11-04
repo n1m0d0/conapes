@@ -25,4 +25,9 @@ class Paginas extends Controller
     {
         return view('page.formulario');
     }
+
+    public function usuario()
+    {
+        return view('page.usuario');
+    }
 }

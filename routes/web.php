@@ -26,3 +26,4 @@ Route::get('planificacion', [Paginas::class, "planificacion"])->name('pagina.pla
 Route::get('propuesta', [Paginas::class, "propuesta"])->name('pagina.propuesta')->middleware(['auth:sanctum', 'verified', 'role:funcionario']);
 Route::get('especialista', [Paginas::class, "especialista"])->name('pagina.especialista')->middleware(['auth:sanctum', 'verified', 'role:especialista']);
 Route::get('formulario', [Paginas::class, "formulario"])->name('pagina.formulario')->middleware(['auth:sanctum', 'verified']);
+Route::get('usuario', [Paginas::class, "usuario"])->name('pagina.usuario')->middleware(['auth:sanctum', 'verified', 'role:administrador']);

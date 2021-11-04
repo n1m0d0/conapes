@@ -31,6 +31,11 @@
                     <x-jet-nav-link href="{{ route('pagina.formulario') }}" :active="request()->routeIs('pagina.formulario')">
                         Formulario
                     </x-jet-nav-link>
+                    @role('administrador')
+                    <x-jet-nav-link href="{{ route('pagina.usuario') }}" :active="request()->routeIs('pagina.usuario')">
+                        Usuario
+                    </x-jet-nav-link>
+                    @endrole
                 </div>
             </div>
 
