@@ -30,4 +30,9 @@ class Paginas extends Controller
     {
         return view('page.usuario');
     }
+
+    public function calendario()
+    {
+        return view('page.calendario');
+    }
 }

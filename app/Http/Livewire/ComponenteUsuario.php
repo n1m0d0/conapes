@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Sector;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -16,10 +17,12 @@ class ComponenteUsuario extends Component
     public $correo;
     public $contrasena;
     public $rol;
-    public $crearModal;
-    public $editarModal;
-    public $eliminarModal;
+    public $crearModal = false;
+    public $editarModal = false;
+    public $eliminarModal = false;
+    public $especialidadModal = false; 
     public $user_id;
+    public $sector;
 
     public function render()
     {
@@ -29,7 +32,8 @@ class ComponenteUsuario extends Component
         }
         $usuarios = $usuarioQuery->orderBy('id', 'DESC')->paginate(4);
         $roles = DB::table('roles')->where('guard_name', 'web')->get();
-        return view('livewire.componente-usuario', compact('usuarios', 'roles'));
+        $sectores = Sector::where('estado', Sector::ACTIVO)->get();
+        return view('livewire.componente-usuario', compact('usuarios', 'roles', 'sectores'));
     }
 
     public function reiniciar()
@@ -65,6 +69,12 @@ class ComponenteUsuario extends Component
         $this->eliminarModal = true;
     }
 
+    public function modalEspecialidad($id) 
+    {
+        $this->user_id = $id;
+        $this->especialidadModal = true;
+    }
+
     public function crear()
     {
         $this->validate([
@@ -80,7 +90,7 @@ class ComponenteUsuario extends Component
             $usuario = new User();
             $usuario->name = $this->nombre;
             $usuario->email = $this->correo;
-            $usuario->password = $this->contrasena;
+            $usuario->password = bcrypt($this->contrasena);
             $usuario->save();
 
             $usuario->assignRole($this->rol);
@@ -117,7 +127,7 @@ class ComponenteUsuario extends Component
             $usuario->removeRole($usuario->getRoleNames()[0]);
             $usuario->name = $this->nombre;
             $usuario->email = $this->correo;
-            $usuario->password = $this->contrasena;
+            $usuario->password = bcrypt($this->contrasena);
             $usuario->save();
 
             $usuario->assignRole($this->rol);
@@ -146,6 +156,21 @@ class ComponenteUsuario extends Component
 
         $this->mensajeEliminacion();
         $this->eliminarModal = false;
+    }
+
+    public function especialidad(){
+        $this->validate([
+            'user_id' => 'required',
+            'sector' => 'required'
+        ]);
+
+        $usuario = User::find($this->user_id);
+        $usuario->sector_id = $this->sector;
+        $usuario->save();
+
+        $this->sector = "";
+        $this->mensaje();
+        $this->especialidadModal = false;
     }
 
     public function mensaje()

@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Generado::class);
     }
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
 }

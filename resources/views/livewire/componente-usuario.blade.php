@@ -21,6 +21,7 @@
                         <th class="p-3 text-left">Nombre</th>
                         <th class="p-3 text-left">Correo</th>
                         <th class="p-3 text-left">Rol</th>
+                        <th class="p-3 text-left">Especialidad</th>
                         <th class="p-3 text-left">Registrado</th>
                         <th class="p-3 text-left">Modificado</th>
                         <th class="p-3">Acciones</th>
@@ -33,9 +34,23 @@
                         <td class="p-3 font-medium capitalize">{{ $usuario->name }}</td>
                         <td class="p-3">{{ $usuario->email }}</td>
                         <td class="p-3">{{ $usuario->getRoleNames()[0] }}</td>
+                        <td class="p-3">
+                            @if($usuario->sector != null)
+                            {{ $usuario->sector->nombre }}
+                            @endif
+                        </td>
                         <td class="p-3">{{ $usuario->created_at }}</td>
                         <td class="p-3 ">{{ $usuario->updated_at }}</td>
                         <td class="flex p-3 items-center">
+                            @if ($usuario->getRoleNames()[0] == 'especialista')
+                            @if ($usuario->sector != null)
+
+                            @else
+                            <a wire:click='modalEspecialidad({{ $usuario->id }})' class="cursor-pointer">
+                                <x-feathericon-book class="text-blue-400 hover:text-gray-100" />
+                            </a>
+                            @endif
+                            @endif
                             <a wire:click='modalEditar({{ $usuario->id }})' class="cursor-pointer">
                                 <x-feathericon-edit class="text-green-400 hover:text-gray-100" />
                             </a>
@@ -167,6 +182,36 @@
             </x-jet-danger-button>
             <x-jet-secondary-button class="ml-2" wire:click='eliminar' wire:loading.attr="disabled">
                 Aceptar
+            </x-jet-secondary-button>
+        </x-slot>
+
+    </x-jet-dialog-modal>
+
+    <x-jet-dialog-modal wire:model="especialidadModal">
+        <x-slot name="title">
+            Especialidad Usuario
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="sector" value="Sector" />
+                <select wire:model="sector"
+                    class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="">Seleccione un opcion</option>
+                    @foreach ($sectores as $sector)
+                    <option value="{{ $sector->id }}">{{ $sector->nombre }}</option>
+                    @endforeach
+                </select>
+                <x-jet-input-error for="sector" class="mt-2" />
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-danger-button wire:click="$set('especialidadModal', false)" wire:loading.attr="disabled">
+                Cancelar
+            </x-jet-danger-button>
+            <x-jet-secondary-button class="ml-2" wire:click='especialidad' wire:loading.attr="disabled">
+                Guardar
             </x-jet-secondary-button>
         </x-slot>
 

@@ -23,7 +23,7 @@ class ComponenteEspecialista extends Component
     public function mount()
     {
         $this->user_id = auth()->user()->id;
-        $this->sector_id = auth()->user()->especialista->sector_id;
+        $this->sector_id = auth()->user()->sector_id;
     }
 
     public function render()

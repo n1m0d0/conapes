@@ -51,7 +51,6 @@
             </table>
             {{ $planificaciones->links() }}
         </div>
-        @livewire('componente-calendario')
     </div>
 
     <x-jet-dialog-modal wire:model="nuevoModal">

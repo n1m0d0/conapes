@@ -14,6 +14,9 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>                    
+                    <x-jet-nav-link href="{{ route('pagina.calendario') }}" :active="request()->routeIs('pagina.calendario')">
+                        calendario
                     </x-jet-nav-link>
                     @role('funcionario')
                     <x-jet-nav-link href="{{ route('pagina.planificacion') }}" :active="request()->routeIs('pagina.planificacion')">

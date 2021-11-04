@@ -17,11 +17,6 @@ class ComponenteEstadistica extends Component
             ->groupBy('estado')
             ->get();
 
-        $propuestaQuery = Portafolio::query();
-        $propuestaQuery = $propuestaQuery->whereHas('planificaciones', function ($query) {
-            $query->where('estado', 2);
-        });
-
         $p = DB::table('planificacions')
             ->join('portafolios', 'planificacions.portafolio_id', '=', 'portafolios.id')           
             ->select('portafolios.nombre', DB::raw('count(*) AS total'))
