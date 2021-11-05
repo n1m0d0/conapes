@@ -18388,10 +18388,9 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");
-  var datos = JSON.parse(calendarEl.getAttribute("data"));
-  console.log(datos);
 
   if (calendarEl != null) {
+    var datos = JSON.parse(calendarEl.getAttribute("data"));
     var calendar = new _fullcalendar_core__WEBPACK_IMPORTED_MODULE_0__.Calendar(calendarEl, {
       locale: _fullcalendar_core_locales_es__WEBPACK_IMPORTED_MODULE_4__["default"],
       plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_list__WEBPACK_IMPORTED_MODULE_3__["default"]],
@@ -18419,7 +18418,6 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.esm.js");
 
-console.log("cargando chart");
 var ctx = document.getElementById("estado");
 
 if (ctx != null) {
@@ -18476,7 +18474,6 @@ if (ctx != null) {
   });
 }
 
-console.log("cargando chart");
 var ctx2 = document.getElementById("cartera");
 
 if (ctx2 != null) {

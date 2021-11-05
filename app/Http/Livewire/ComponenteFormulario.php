@@ -9,6 +9,8 @@ use App\Models\Propuesta;
 use App\Models\Formulario;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpWord\Style\Language;
+use PhpOffice\PhpWord\SimpleType\Jc;
 
 class ComponenteFormulario extends Component
 {
@@ -80,16 +82,60 @@ class ComponenteFormulario extends Component
             $properties->setCreator(auth()->user()->name);
             $properties->setCompany('Ministerio de Planificacion');
             $properties->setTitle($formulario->nombre);
+            $phpWord->getCompatibility()->setOoxmlVersion(15);
+            $phpWord->getSettings()->setThemeFontLang(new Language("ES_ES"));
 
             $section = $phpWord->addSection();
 
-            $description = "Formulario: " . $formulario->nombre;
+            //$header = $section->addHeader();
+            //$header->addImage(asset('image/NUEVO_LOGO_MPD_2021.png'));
 
-            $section->addTitle($description);
+            $fontTitle = [
+                "name" => "Tahoma",
+                "size" => 11,
+                "color" => "000000",
+                "italic" => false,
+                "bold" => true,
+            ];
 
-            $description = "Esto es una prueba $this->cabecera y $this->cuerpo";
+            $phpWord->addTitleStyle(1, $fontTitle, [ "alignment" => Jc::CENTER ]);
+            $section->addTitle($formulario->nombre, 1);
+            $section->addTitle("MPD/UDAPE-NI 0701/2021", 1);
 
-            $section->addText($description);
+            $fontText = [
+                "name" => "Tahoma",
+                "size" => 11,
+                "color" => "000000",
+                "italic" => false,
+                "bold" => false,
+            ];
+
+            $fontTextBold = [
+                "name" => "Tahoma",
+                "size" => 11,
+                "color" => "000000",
+                "italic" => false,
+                "bold" => true,
+            ];
+
+            $textRun = $section->addTextRun([
+                "alignment" => Jc::BOTH,
+                "lineHeight" => 1, # Quedará muy pegado
+            ]);
+
+            $textRun->addTextBreak(4);
+            $textRun->addText("Señor Notario de Fé Pública, en el registro de escrituras públicas que corren a su cargo sirvase insertar un ACUERDO TRANSACCIONAL, el cual se rige al tenor de las siguientes cláusulas:", $fontText);
+            $textRun->addTextBreak(2);
+            $textRun->addText("PRIMERA. (LAS PARTES).- ", $fontTextBold);
+            $textRun->addText("Intervienen el presente contrato: Sergio Cortez Colque, boliviano, mayor de edad, hábil por derecho, con cédula de identidad N° 3518509 Oruro, domiciliado en el pasaje 19 y Teniente N° 6495 de la zona de Obrajes de La Paz y; – – Henry Ezequiel Arancibia Nuñez, boliviano, mayor de edad, hábil por derecho, con cédula identidad N° 4043233 Oruro, con domicilio en la calle Ocobaya N° 244 de la zona Villa Fátima de la ciudad La Paz, conforme a las siguientes estipulaciones:", $fontText);
+            $textRun->addTextBreak(2);
+            $textRun->addText("SEGUNDA. (ANTECEDENTES).- ", $fontTextBold);
+            $textRun->addText("En fecha 3 de enero del año 2017, el Sr. Sergio Cortez interpuso una denuncia contra del Sr. Arancibia por el delito de estafa misma que se encuentra en el Ministerio Público con el N° de caso: LPZ1715913 y cuaderno de control jurisdiccional en el Tribunal Departamental de Justicia de la ciudad de La Paz con NUREJ: 20164701. – – El Sr. Sergio Cortez Colque, ha visto por conveniente concluir todas las controversias relacionadas anteriormente, habiendo solicitado al Señor Henry Ezequiel Arancibia Nuñez, arribar al presente acuerdo definitivo precautelando el interés de todas las partes quienes han aceptado la solución conciliatoria y transaccional de este asunto.", $fontText);
+            $textRun->addTextBreak(2);
+            $textRun->addText("TERCERA. (OBJETO).- ", $fontTextBold);
+            $textRun->addText("El presente acuerdo suscrito entre el Sr. Sergio Cortez Colque y el señor Henry Ezequiel Arancibia Nuñez tiene por objeto extinguir de manera amistosa las controversias administrativas y judiciales suscitadas entre ambas partes en relación con el proceso que se halla ventilando en el Juzgado Noveno de Instrucción Cautelar de la ciudad de La Paz, así como la denuncia existente en el Ministerio Público.", $fontText);
+
+            //$textRun->addImage(asset('image/NUEVO_LOGO_MPD_2021.png'));
 
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
             try {
@@ -135,6 +181,7 @@ class ComponenteFormulario extends Component
 
     public function modalAgregar($id)
     {
+        $this->limpiar();
         $this->propuesta_id = $id;
         $this->agregarModal = true;
     }

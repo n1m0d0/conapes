@@ -1184,9 +1184,6 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
-.mr-8 {
-	margin-right: 2rem;
-}
 .block {
 	display: block;
 }
@@ -1561,10 +1558,6 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
 }
-.bg-red-500 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
-}
 .bg-blue-500 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
@@ -1572,6 +1565,10 @@ select {
 .bg-blue-200 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+}
+.bg-red-500 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
 .bg-yellow-500 {
 	--tw-bg-opacity: 1;
@@ -1843,9 +1840,17 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(245, 158, 11, var(--tw-text-opacity));
 }
+.text-blue-400 {
+	--tw-text-opacity: 1;
+	color: rgba(96, 165, 250, var(--tw-text-opacity));
+}
 .text-red-400 {
 	--tw-text-opacity: 1;
 	color: rgba(248, 113, 113, var(--tw-text-opacity));
+}
+.text-black {
+	--tw-text-opacity: 1;
+	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .text-gray-200 {
 	--tw-text-opacity: 1;
@@ -1863,17 +1868,9 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(59, 130, 246, var(--tw-text-opacity));
 }
-.text-black {
-	--tw-text-opacity: 1;
-	color: rgba(0, 0, 0, var(--tw-text-opacity));
-}
 .text-gray-100 {
 	--tw-text-opacity: 1;
 	color: rgba(243, 244, 246, var(--tw-text-opacity));
-}
-.text-blue-400 {
-	--tw-text-opacity: 1;
-	color: rgba(96, 165, 250, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -2375,16 +2372,16 @@ button.toast-close-button{padding:0;cursor:pointer;background:0 0;border:0;-webk
 		grid-column: span 1 / span 1;
 	}
 
-	.md\:col-span-12 {
-		grid-column: span 12 / span 12;
+	.md\:col-span-6 {
+		grid-column: span 6 / span 6;
 	}
 
 	.md\:col-span-4 {
 		grid-column: span 4 / span 4;
 	}
 
-	.md\:col-span-6 {
-		grid-column: span 6 / span 6;
+	.md\:col-span-12 {
+		grid-column: span 12 / span 12;
 	}
 
 	.md\:mt-0 {

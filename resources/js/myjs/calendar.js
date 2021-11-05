@@ -6,9 +6,8 @@ import itLocale from "@fullcalendar/core/locales/es";
 
 document.addEventListener("DOMContentLoaded", function () {
     const calendarEl = document.getElementById("calendar");
-    var datos = JSON.parse(calendarEl.getAttribute("data"));
-    console.log(datos);  
     if (calendarEl != null) {
+        var datos = JSON.parse(calendarEl.getAttribute("data"));
         let calendar = new Calendar(calendarEl, {
             locale: itLocale,
             plugins: [dayGridPlugin, timeGridPlugin, listPlugin],
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 center: "title",
                 right: "dayGridMonth,timeGridWeek",
             },
-            events: datos
+            events: datos,
         });
 
         calendar.render();

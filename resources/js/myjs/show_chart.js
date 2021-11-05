@@ -1,6 +1,5 @@
 import Chart from "chart.js/auto";
 
-console.log("cargando chart");
 var ctx = document.getElementById("estado");
 if (ctx != null) {
     var estadistica = JSON.parse(ctx.getAttribute("data"));
@@ -68,7 +67,6 @@ if (ctx != null) {
     });
 }
 
-console.log("cargando chart");
 var ctx2 = document.getElementById("cartera");
 if (ctx2 != null) {
     var estadistica2 = JSON.parse(ctx2.getAttribute("data"));
