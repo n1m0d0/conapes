@@ -16,4 +16,9 @@ class Sector extends Model
     {
         return $this->hasMany(Propuesta::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

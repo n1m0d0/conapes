@@ -17,11 +17,6 @@ class Asignacion extends Model
         return $this->belongsTo(Propuesta::class);
     }
 
-    public function especialista()
-    {
-        return $this->belongsTo(Especialista::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
