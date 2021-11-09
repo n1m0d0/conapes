@@ -35,4 +35,9 @@ class Paginas extends Controller
     {
         return view('page.calendario');
     }
+
+    public function seleccionar()
+    {
+        return view('page.seleccionar');
+    }
 }

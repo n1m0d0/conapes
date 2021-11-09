@@ -38,6 +38,9 @@
                     <x-jet-nav-link href="{{ route('pagina.usuario') }}" :active="request()->routeIs('pagina.usuario')">
                         Usuario
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('pagina.seleccionar') }}" :active="request()->routeIs('pagina.seleccionar')">
+                        Seleccion
+                    </x-jet-nav-link>
                     @endrole
                 </div>
             </div>
