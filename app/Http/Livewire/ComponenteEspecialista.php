@@ -39,7 +39,7 @@ class ComponenteEspecialista extends Component
             })->where('sector_id', $this->sector_id)->where('estado', '!=', 5);
         }
         $propuestas = $propuestaQuery->orderBy('id', 'DESC')->paginate(4);
-        $asignaciones = Asignacion::where('estado', 1)->where('user_id', $this->user_id)->paginate(4);
+        $asignaciones = Asignacion::where('estado', 1)->where('user_id', $this->user_id)->orderBy('id', 'DESC')->paginate(4);
         return view('livewire.componente-especialista', compact('propuestas', 'asignaciones'));
     }
 

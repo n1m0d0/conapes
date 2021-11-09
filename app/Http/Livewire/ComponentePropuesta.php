@@ -36,19 +36,19 @@ class ComponentePropuesta extends Component
 
     public function render()
     {
-        $sectores = Sector::where('estado', 1)->get();
-        $documentos = Documento::where('estado', 1)->get();
-        $planificaciones = Planificacion::where('estado', 1)->get();
+        $sectores = Sector::where('estado', Sector::ACTIVO)->get();
+        $documentos = Documento::where('estado', Documento::ACTIVO)->get();
+        $planificaciones = Planificacion::where('estado', Planificacion::REGISTRADO)->get();
 
         $propuestaQuery = Propuesta::query();
         if ($this->busqueda != null) {
             $propuestaQuery = $propuestaQuery->whereHas('planificacion', function ($query) {
-                $query->where('user_id', $this->user_id)->where('estado', 2)->where('nombre', 'LIKE', "%$this->busqueda%");
-            })->where('estado', '!=', 5);
+                $query->where('user_id', $this->user_id)->where('estado', Planificacion::ACTIVO)->where('nombre', 'LIKE', "%$this->busqueda%");
+            })->where('estado', '!=', Propuesta::INACTIVO);
         } else {
             $propuestaQuery = $propuestaQuery->whereHas('planificacion', function ($query) {
-                $query->where('user_id', $this->user_id)->where('estado', 2);
-            })->where('estado', '!=', 5);
+                $query->where('user_id', $this->user_id)->where('estado', Planificacion::ACTIVO);
+            })->where('estado', '!=', Propuesta::INACTIVO);
         }
         $propuestas = $propuestaQuery->orderBy('id', 'DESC')->paginate(4);
         return view('livewire.componente-propuesta', compact('propuestas', 'planificaciones', 'sectores', 'documentos'));

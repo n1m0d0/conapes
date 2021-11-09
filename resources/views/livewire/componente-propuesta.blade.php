@@ -64,13 +64,20 @@
                         </td>
                         <td class="p-3 ">
                             @if ($propuesta->estado == 1)
-                            REVISION
+                            REGISTRADO
                             @else
                             @if ($propuesta->estado == 2)
-                            APROBADO
+                            REVISION
                             @else
                             @if ($propuesta->estado == 3)
+                            APROBADO
+                            @if ($propuesta->estado == 4)
                             REPROBADO
+                            @else
+                            @if ($propuesta->estado == 5)
+                            INACTIVO
+                            @endif
+                            @endif
                             @endif
                             @endif
                             @endif

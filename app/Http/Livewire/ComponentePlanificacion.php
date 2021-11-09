@@ -30,12 +30,12 @@ class ComponentePlanificacion extends Component
 
     public function render()
     {
-        $portafolios = Portafolio::where('estado', 1)->get();
+        $portafolios = Portafolio::where('estado', Portafolio::ACTIVO)->get();
         $planQuery = Planificacion::query();
         if ($this->busqueda != null) {
             $planQuery = $planQuery->where('nombre', "LIKE", "%$this->busqueda%");
         }
-        $planQuery = $planQuery->where('user_id', $this->user_id)->where('estado', 1);
+        $planQuery = $planQuery->where('user_id', $this->user_id)->where('estado', Planificacion::REGISTRADO);
         $planificaciones = $planQuery->orderBy('id', 'DESC')->paginate(4);
         return view('livewire.componente-planificacion', compact('planificaciones', 'portafolios'));
     }
