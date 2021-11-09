@@ -168,6 +168,33 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('pagina.calendario') }}" :active="request()->routeIs('pagina.calendario')">
+                calendario
+            </x-jet-responsive-nav-link>
+            @role('funcionario')
+            <x-jet-responsive-nav-link href="{{ route('pagina.planificacion') }}" :active="request()->routeIs('pagina.planificacion')">
+                Planificacion
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('pagina.propuesta') }}" :active="request()->routeIs('pagina.propuesta')">
+                Propuesta
+            </x-jet-responsive-nav-link>
+            @endrole
+            @role('especialista')
+            <x-jet-responsive-nav-link href="{{ route('pagina.especialista') }}" :active="request()->routeIs('pagina.especialista')">
+                Especialista
+            </x-jet-responsive-nav-link>
+            @endrole
+            <x-jet-responsive-nav-link href="{{ route('pagina.formulario') }}" :active="request()->routeIs('pagina.formulario')">
+                Formulario
+            </x-jet-responsive-nav-link>
+            @role('administrador')
+            <x-jet-responsive-nav-link href="{{ route('pagina.usuario') }}" :active="request()->routeIs('pagina.usuario')">
+                Usuario
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('pagina.seleccionar') }}" :active="request()->routeIs('pagina.seleccionar')">
+                Seleccion
+            </x-jet-responsive-nav-link>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->
